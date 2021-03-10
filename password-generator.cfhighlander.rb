@@ -5,8 +5,8 @@ CfhighlanderTemplate do
   Parameters do
     ComponentParam 'EnvironmentName', 'dev', isGlobal: true
     ComponentParam 'EnvironmentType', 'development', allowedValues: ['development','production'], isGlobal: true
-    ComponentParam 'SSMParameterPath'
     ComponentParam 'Identifier'
+    ComponentParam 'PathSuffix', 'generated-password'
   end
 
   LambdaFunctions 'ssm_custom_resources'
