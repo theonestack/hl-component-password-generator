@@ -1,9 +1,10 @@
 CloudFormation do
 
+  ssm_path = external_parameters.fetch(:ssm_path)
   Resource("PasswordSSMSecureParameter") {
     Type "Custom::SSMSecureParameter"
     Property('ServiceToken', FnGetAtt('SSMSecureParameterCR', 'Arn'))
-    Property('Path', FnSub("/${Identifier}/${EnvironmentName}/${PathSuffix}"))
+    Property('Path', ssm_path)
     Property('Description', FnSub("Secret parameter for ${EnvironmentName} ${Identifier}"))
     Property('Tags',[
       { Key: 'Name', Value: FnSub("${EnvironmentName}-${Identifier}")},
